@@ -256,8 +256,10 @@ Contributions are welcome! Here's how you can help:
 
 For questions and support:
 - Open an issue on GitHub
-- Email: muskkaniyer@gmail.com
-- LinkedIn: https://www.linkedin.com/in/muskkaniyer/  
+- 🌐 [Portfolio](https://github.com/Muskkaniyer)  
+- 💼 [LinkedIn](https://www.linkedin.com/in/muskkaniyer/)  
+- 📧 [Gmail](mailto:muskkaniyer@gmail.com)  
+
 
 ---
 

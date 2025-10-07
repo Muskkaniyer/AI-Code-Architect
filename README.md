@@ -196,24 +196,9 @@ user_prompt = "Create a simple working calculator web application"
 - `calculator.css` - Styling
 - `calculator.js` - Calculator logic
 
-### Example 2: Portfolio Website
 
-**Input:**
-```python
-user_prompt = """
-Create a personal portfolio website with:
-- Hero section with introduction
-- Skills section
-- Projects gallery
-- Contact form
-Make it responsive and modern
-"""
-```
+<img width="1907" height="821" alt="image" src="https://github.com/user-attachments/assets/fed84d35-09a4-409d-80c6-5c24223845fa" />
 
-**Output:**
-- Complete responsive website structure
-- Multiple HTML/CSS/JS files
-- Professional styling
 
 ## 🔧 Configuration
 

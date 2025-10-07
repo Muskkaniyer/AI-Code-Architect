@@ -1,0 +1,121 @@
+/* Reset some default browser styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f4f6;
+    font-family: Arial, sans-serif;
+}
+
+.calculator {
+    width: 320px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.display {
+    background-color: #222222;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 2rem;
+    text-align: right;
+}
+
+.display input {
+    width: 100%;
+    height: 60px;
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: inherit;
+    text-align: inherit;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+}
+
+.btn {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.btn:hover {
+    background-color: #d4d4d4;
+}
+
+.btn:active {
+    background-color: #bbbbbb;
+    transform: scale(0.95);
+}
+
+.btn[data-value="="] {
+    background-color: #4caf50;
+    color: white;
+    grid-column: span 2;
+}
+
+.btn[data-value="="]:hover {
+    background-color: #45a049;
+}
+
+.btn[data-value="="]:active {
+    background-color: #3e8e41;
+}
+
+.btn.function {
+    background-color: #f0f0f0;
+}
+
+.btn.function:hover {
+    background-color: #e2e2e2;
+}
+
+.btn.function:active {
+    background-color: #cccccc;
+}
+
+/* Set up the grid layout for the calculator with a gradient background */
+#calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: linear-gradient(135deg, #f06, #f9c);
+}
+
+/* Improved responsive design for small screens */
+@media (max-width: 400px) {
+    .calculator {
+        width: 100%;
+        margin: 10px;
+    }
+    .btn {
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+    .display {
+        font-size: 1.5rem;
+    }
+    .display input {
+        height: 50px;
+    }
+}

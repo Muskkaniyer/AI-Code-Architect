@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Architect - Pitch Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #e0e6ed;
+            overflow-x: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 40px;
+            scroll-snap-align: start;
+            position: relative;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .content {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(26, 31, 58, 0.8);
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+        }
+
+        h2 {
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            color: #667eea;
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+            color: #8b9dc3;
+        }
+
+        p, li {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #b8c5d6;
+        }
+
+        .subtitle {
+            font-size: 1.6em;
+            color: #8b9dc3;
+            margin-bottom: 40px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            color: #e0e6ed;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.1);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: rgba(18, 22, 40, 0.6);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.6);
+        }
+
+        .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 4em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.4));
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            color: #8b9dc3;
+            margin-top: 10px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 30px 0;
+            align-items: center;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin-right: 30px;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .timeline-content {
+            flex-grow: 1;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.4em;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.6);
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-size: 1.2em;
+            color: #667eea;
+            opacity: 0.8;
+        }
+
+        .agent-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .agent-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            flex: 1;
+            margin: 10px;
+            min-width: 200px;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: #667eea;
+            margin: 0 10px;
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li::before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 10px;
+            text-shadow: 0 0 10px rgba(102, 126, 234, 0.6);
+        }
+
+        .demo-container {
+            background: rgba(18, 22, 40, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .demo-preview {
+            background: #1a1f3a;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .demo-code {
+            background: #0d1020;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            color: #64ffda;
+            margin: 20px 0;
+            border-left: 3px solid #667eea;
+            overflow-x: auto;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: 2px solid rgba(102, 126, 234, 0.4);
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            .content { padding: 30px; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Slide 1: Title -->
+        <div class="slide">
+            <div class="content">
+                <h1>AI CODE ARCHITECT</h1>
+                <p class="subtitle">Transform Natural Language into Production-Ready Code</p>
+                <div class="highlight">
+                    <p style="margin: 0; font-size: 1.4em;">Multi-Agent AI System • LangChain Powered • Open Source</p>
+                </div>
+                <p style="margin-top: 40px; font-size: 1.2em;">A revolutionary approach to automated code generation using specialized AI agents that collaborate like a real software development team.</p>
+            </div>
+            <div class="slide-number">1 / 11</div>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide">
+            <div class="content">
+                <h2>⚠️ The Problem</h2>
+                <div class="grid">
+                    <div class="card">
+                        <div class="icon">🐌</div>
+                        <h3>Slow Development</h3>
+                        <p>Writing boilerplate code and setting up project structures consumes valuable development time that could be spent on core business logic and innovation.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon">❌</div>
+                        <h3>Incomplete AI Output</h3>
+                        <p>Traditional AI code generators produce non-functional code with placeholders and incomplete implementations that require extensive manual intervention.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon">🔧</div>
+                        <h3>Complex Setup</h3>
+                        <p>Setting up new projects requires extensive configuration, dependency management, and repetitive tasks that slow down the development process.</p>
+                    </div>
+                </div>
+                <div class="highlight">
+                    <p style="font-size: 1.3em;">Developers spend up to forty percent of their time on repetitive coding tasks that could be automated, reducing productivity and increasing time to market for new features.</p>
+                </div>
+            </div>
+            <div class="slide-number">2 / 11</div>
+        </div>
+
+        <!-- Slide 3: The Solution -->
+        <div class="slide">
+            <div class="content">
+                <h2>💡 Our Solution</h2>
+                <p style="font-size: 1.4em; margin-bottom: 40px;">AI Code Architect employs a revolutionary multi-agent approach that mirrors how real development teams work, with specialized roles ensuring comprehensive coverage of the development lifecycle.</p>
+                
+                <div class="agent-flow">
+                    <div class="agent-box">
+                        <div class="icon">🎯</div>
+                        <h3>Planner</h3>
+                        <p>Analyzes requirements and creates strategic plans</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="agent-box">
+                        <div class="icon">🏗️</div>
+                        <h3>Architect</h3>
+                        <p>Designs structure and implementation roadmap</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="agent-box">
+                        <div class="icon">💻</div>
+                        <h3>Coder</h3>
+                        <p>Writes production-ready code</p>
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <h3>Key Innovation: Agent Specialization</h3>
+                    <p>Each agent has a specific role and expertise, resulting in higher quality code and better architectural decisions compared to single-model approaches. This separation of concerns ensures that planning, design, and implementation are handled by specialized agents optimized for their specific tasks.</p>
+                </div>
+            </div>
+            <div class="slide-number">3 / 11</div>
+        </div>
+
+        <!-- Slide 4: Live Demo -->
+        <div class="slide">
+            <div class="content">
+                <h2>🎬 Live Demonstration</h2>
+                <p style="font-size: 1.4em; margin-bottom: 30px;">Here is a fully functional calculator application generated entirely by AI Code Architect from a simple natural language prompt. The system created the complete HTML structure, CSS styling, and JavaScript functionality without any manual coding intervention.</p>
+                
+                <div class="demo-container">
+                    <h3>Generated Application: Modern Calculator</h3>
+                    <div class="demo-code">
+                        <p>User Prompt: "Create a simple working calculator web application in HTML, CSS and JavaScript"</p>
+                    </div>
+                    
+                    <div class="demo-preview">
+                        <iframe srcdoc='<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        #calculator {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+        #display {
+            margin-bottom: 20px;
+        }
+        #calc-display {
+            width: 100%;
+            padding: 20px;
+            font-size: 2em;
+            text-align: right;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            background: #f5f5f5;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .btn {
+            padding: 20px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #f0f0f0;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        #btnEquals {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        #btnClear, #btnBackspace {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <div id="display">
+            <input type="text" id="calc-display" disabled value="0">
+        </div>
+        <div class="buttons">
+            <button id="btn7" class="btn" data-value="7">7</button>
+            <button id="btn8" class="btn" data-value="8">8</button>
+            <button id="btn9" class="btn" data-value="9">9</button>
+            <button id="btnDivide" class="btn" data-value="/">/</button>
+            <button id="btn4" class="btn" data-value="4">4</button>
+            <button id="btn5" class="btn" data-value="5">5</button>
+            <button id="btn6" class="btn" data-value="6">6</button>
+            <button id="btnMultiply" class="btn" data-value="*">*</button>
+            <button id="btn1" class="btn" data-value="1">1</button>
+            <button id="btn2" class="btn" data-value="2">2</button>
+            <button id="btn3" class="btn" data-value="3">3</button>
+            <button id="btnSubtract" class="btn" data-value="-">-</button>
+            <button id="btn0" class="btn" data-value="0">0</button>
+            <button id="btnDecimal" class="btn" data-value=".">.</button>
+            <button id="btnEquals" class="btn" data-value="=">=</button>
+            <button id="btnAdd" class="btn" data-value="+">+</button>
+            <button id="btnClear" class="btn" data-value="C">C</button>
+            <button id="btnBackspace" class="btn" data-value="B">B</button>
+        </div>
+    </div>
+    <script>
+        let display = document.getElementById("calc-display");
+        let currentValue = "0";
+        let previousValue = "";
+        let operator = "";
+        let shouldResetDisplay = false;
+
+        function updateDisplay() {
+            display.value = currentValue;
+        }
+
+        function handleNumber(num) {
+            if (shouldResetDisplay) {
+                currentValue = num;
+                shouldResetDisplay = false;
+            } else {
+                currentValue = currentValue === "0" ? num : currentValue + num;
+            }
+            updateDisplay();
+        }
+
+        function handleOperator(op) {
+            if (previousValue && operator && !shouldResetDisplay) {
+                calculate();
+            }
+            previousValue = currentValue;
+            operator = op;
+            shouldResetDisplay = true;
+        }
+
+        function calculate() {
+            if (!operator || !previousValue) return;
+            const prev = parseFloat(previousValue);
+            const current = parseFloat(currentValue);
+            let result;
+            
+            if (operator === "+") result = prev + current;
+            else if (operator === "-") result = prev - current;
+            else if (operator === "*") result = prev * current;
+            else if (operator === "/") {
+                if (current === 0) {
+                    alert("Cannot divide by zero");
+                    clearCalculator();
+                    return;
+                }
+                result = prev / current;
+            }
+            
+            currentValue = result.toString();
+            operator = "";
+            previousValue = "";
+            shouldResetDisplay = true;
+            updateDisplay();
+        }
+
+        function clearCalculator() {
+            currentValue = "0";
+            previousValue = "";
+            operator = "";
+            shouldResetDisplay = false;
+            updateDisplay();
+        }
+
+        function backspace() {
+            currentValue = currentValue.length > 1 ? currentValue.slice(0, -1) : "0";
+            updateDisplay();
+        }
+
+        document.querySelectorAll(".btn").forEach(button => {
+            button.addEventListener("click", () => {
+                const value = button.getAttribute("data-value");
+                if (!isNaN(value)) {
+                    handleNumber(value);
+                } else if (value === ".") {
+                    if (!currentValue.includes(".")) {
+                        currentValue += ".";
+                        updateDisplay();
+                    }
+                } else if (["+", "-", "*", "/"].includes(value)) {
+                    handleOperator(value);
+                } else if (value === "=") {
+                    calculate();
+                } else if (value === "C") {
+                    clearCalculator();
+                } else if (value === "B") {
+                    backspace();
+                }
+            });
+        });
+    </script>
+</body>
+</html>'></iframe>
+                    </div>
+                    
+                    <p style="margin-top: 20px; font-size: 1.1em;">This demonstrates the system's capability to generate complete, production-ready applications with proper error handling, responsive design, and full functionality from a simple natural language description.</p>
+                </div>
+            </div>
+            <div class="slide-number">4 / 11</div>
+        </div>
+
+        <!-- Slide 5: How It Works -->
+        <div class="slide">
+            <div class="content">
+                <h2>🔄 How It Works</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Step 1: Natural Language Input</h3>
+                            <p>The user describes the desired application in plain English, providing requirements and specifications without needing technical knowledge of implementation details.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Step 2: Planning Phase</h3>
+                            <p>The Planner Agent analyzes requirements using advanced natural language processing to create a structured plan with clear objectives, feature lists, and success criteria.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Step 3: Architecture Design</h3>
+                            <p>The Architect Agent designs the file structure, breaks down the project into implementation steps, creates task dependencies, and establishes the technical architecture.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Step 4: Code Generation</h3>
+                            <p>The Coder Agent implements each step sequentially, using intelligent file system tools to create complete, functional code that adheres to best practices and coding standards.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Step 5: Iterative Refinement</h3>
+                            <p>The system iterates through all tasks until completion, ensuring that every component is implemented and the application is production-ready with proper error handling and edge case management.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">5 / 11</div>
+        </div>
+
+        <!-- Slide 6: Technology Stack -->
+        <div class="slide">
+            <div class="content">
+                <h2>🛠️ Technology Stack</h2>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h3>LangChain</h3>
+                        <p>Enterprise-grade framework for building LLM-powered applications with sophisticated tool use capabilities and structured outputs that ensure reliable, type-safe operations.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>LangGraph</h3>
+                        <p>Advanced state management and agent orchestration framework that enables complex multi-agent workflows with seamless communication and context preservation across agent transitions.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>OpenAI GPT-4o</h3>
+                        <p>Latest generation language model with enhanced reasoning capabilities, superior code generation abilities, and improved understanding of complex technical requirements.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Pydantic</h3>
+                        <p>Type-safe data validation library ensuring reliable structured outputs from AI agents, preventing errors and maintaining consistency across the entire generation pipeline.</p>
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <h3>Technical Highlights</h3>
+                    <p>The system leverages tool-augmented generation for intelligent file system operations, enabling agents to read existing code, write new implementations, and navigate project structures autonomously. Structured output with Pydantic models ensures type safety and reliability throughout the process. State management across agent transitions maintains context and enables seamless collaboration between specialized agents. Iterative refinement with configurable recursion limits ensures complete implementation of all features.</p>
+                </div>
+            </div>
+            <div class="slide-number">6 / 11</div>
+        </div>
+
+        <!-- Slide 7: Use Cases -->
+        <div class="slide">
+            <div class="content">
+                <h2>🎯 Use Cases</h2>
+                
+                <div class="grid">
+                    <div class="card">
+                        <div class="icon">🌐</div>
+                        <h3>Web Applications</h3>
+                        <p>Generate complete web applications with HTML, CSS, and JavaScript including calculators, todo lists, interactive dashboards, and dynamic components with full functionality.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="icon">🐍</div>
+                        <h3>Python Scripts</h3>
+                        <p>Create sophisticated utility scripts, data processing pipelines, automation tools, and backend services from natural language descriptions with proper error handling.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="icon">🔌</div>
+                        <h3>API Development</h3>
+                        <p>Build RESTful API endpoints and microservices with comprehensive routing, authentication, error handling, and documentation following industry best practices.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="icon">⚡</div>
+                        <h3>Rapid Prototyping</h3>
+                        <p>Quickly prototype ideas and minimum viable products without investing hours in boilerplate code, allowing faster iteration and validation of concepts.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="icon">📦</div>
+                        <h3>Boilerplate Generation</h3>
+                        <p>Generate comprehensive project templates and starter code for various frameworks and languages, accelerating project initialization and setup processes.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="icon">🧪</div>
+                        <h3>Learning Tool</h3>
+                        <p>Educational resource for understanding code structure, design patterns, and best practices through examination of AI-generated examples that demonstrate proper implementation.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">7 / 11</div>
+        </div>
+
+        <!-- Slide 8: Key Features -->
+        <div class="slide">
+            <div class="content">
+                <h2>✨ Key Features</h2>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h3>🧠 Multi-Agent Collaboration</h3>
+                        <p>Three specialized agents work together in orchestrated harmony, each focused on their domain of expertise to achieve optimal results through collaborative intelligence.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>📝 Natural Language Input</h3>
+                        <p>Simply describe what you want to build in plain English without requiring technical specifications, making the system accessible to both technical and non-technical users.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🔧 Tool-Augmented Generation</h3>
+                        <p>Agents intelligently use file system tools to read existing code, write new implementations, list directory contents, and navigate project structures autonomously.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🎨 Structured Output</h3>
+                        <p>Type-safe planning and execution using Pydantic models ensures reliability, prevents errors, and maintains consistency throughout the generation process.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🔄 Iterative Development</h3>
+                        <p>Agents iterate through implementation steps until all tasks are complete, ensuring production-ready code with proper error handling and comprehensive functionality.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>📦 File System Management</h3>
+                        <p>Automatic file creation, organization, and directory structure management based on project requirements and architectural decisions made by the Architect Agent.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">8 / 11</div>
+        </div>
+
+        <!-- Slide 9: Advantages -->
+        <div class="slide">
+            <div class="content">
+                <h2>🚀 Competitive Advantages</h2>
+                
+                <div class="highlight">
+                    <h3>Why AI Code Architect Stands Out</h3>
+                </div>
+
+                <div class="grid">
+                    <div class="card">
+                        <h3>Complete Code Generation</h3>
+                        <p>Unlike other tools that generate incomplete code with placeholders and TODOs, our multi-agent system produces fully functional, production-ready applications that work immediately without manual intervention.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Intelligent Architecture</h3>
+                        <p>The dedicated Architect Agent ensures proper file structure, code organization, and adherence to software design principles, not just superficial code generation without thoughtful design.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Open Source</h3>
+                        <p>Fully open source and extensible architecture allowing customization for specific use cases, integration into existing workflows, and community-driven improvements and enhancements.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Modern Tech Stack</h3>
+                        <p>Built on cutting-edge LangChain and LangGraph frameworks, ensuring long-term maintainability, scalability, and compatibility with the latest AI advancements and best practices.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; padding: 30px; background: rgba(18, 22, 40, 0.6); border-radius: 15px; border: 1px solid rgba(102, 126, 234, 0.3);">
+                    <h3>Proven Results</h3>
+                    <ul style="font-size: 1.2em;">
+                        <li>Reduces development time by up to sixty percent for prototyping and initial development</li>
+                        <li>Generates syntactically correct, fully functional code with proper error handling</li>
+                        <li>Handles complex multi-file projects with appropriate separation of concerns</li>
+                        <li>Supports various programming languages, frameworks, and development paradigms</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">9 / 11</div>
+        </div>
+
+        <!-- Slide 10: Future Roadmap -->
+        <div class="slide">
+            <div class="content">
+                <h2>🔮 Future Roadmap</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Phase 1: Enhanced Language Support</h3>
+                            <p>Expand comprehensive support for Python frameworks (Django, Flask, FastAPI), modern JavaScript frameworks (React, Vue.js, Angular), and backend technologies (Node.js, Express).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Phase 2: Testing Agent</h3>
+                            <p>Introduce a fourth specialized agent dedicated to writing comprehensive unit tests, integration tests, and end-to-end tests for all generated code to ensure reliability.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Phase 3: IDE Integration</h3>
+                            <p>Develop VS Code extension and JetBrains plugin for seamless code generation within developer workflows, enabling inline suggestions and context-aware generation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Phase 4: Cloud Platform</h3>
+                            <p>Launch web-based interface with cloud hosting for non-technical users, team collaboration features, project versioning, and shared template libraries.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Phase 5: Custom Model Training</h3>
+                            <p>Enable fine-tuning of models on domain-specific codebases for specialized applications in industries like healthcare, finance, and enterprise software.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">10 / 11</div>
+        </div>
+
+        <!-- Slide 11: Call to Action -->
+        <div class="slide">
+            <div class="content" style="text-align: center;">
+                <h1>Join the Revolution</h1>
+                <p class="subtitle">Transform how you build software with AI Code Architect</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Open Source</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">AI Agents</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Possibilities</div>
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <h3>Get Started Today</h3>
+                    <p style="font-size: 1.3em;">Star the repository • Contribute to the project • Build amazing things</p>
+                    <p style="font-size: 1.1em; margin-top: 20px;">Experience the future of automated software development with intelligent multi-agent collaboration powered by state-of-the-art language models and sophisticated orchestration frameworks.</p>
+                </div>
+
+                <a href="https://github.com/Muskkaniyer/AI-Code-Architect" class="cta" target="_blank">
+                    View on GitHub →
+                </a>
+
+                <div style="margin-top: 50px; padding: 30px; background: rgba(18, 22, 40, 0.6); border-radius: 15px; border: 1px solid rgba(102, 126, 234, 0.3);">
+                    <h3>Contact & Connect</h3>
+                    <p style="font-size: 1.2em;">Questions? Collaboration opportunities? Feature requests?</p>
+                    <p style="font-size: 1.1em; color: #8b9dc3; margin-top: 10px;">Let's build the future of software development together through open collaboration and shared innovation.</p>
+                    <p style="font-size: 1em; color: #667eea; margin-top: 20px;">GitHub: github.com/Muskkaniyer/AI-Code-Architect</p>
+                </div>
+            </div>
+            <div class="slide-number">11 / 11</div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll navigation with arrow keys
+        document.addEventListener('keydown', (e) => {
+            const slides = document.querySelectorAll('.slide');
+            const currentSlide = Math.round(window.scrollY / window.innerHeight);
+            
+            if (e.key === 'ArrowDown' && currentSlide < slides.length - 1) {
+                slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+            } else if (e.key === 'ArrowUp' && currentSlide > 0) {
+                slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Touch swipe support for mobile
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const slides = document.querySelectorAll('.slide');
+            const currentSlide = Math.round(window.scrollY / window.innerHeight);
+            
+            if (touchStartY - touchEndY > 50 && currentSlide < slides.length - 1) {
+                // Swipe up
+                slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            if (touchEndY - touchStartY > 50 && currentSlide > 0) {
+                // Swipe down
+                slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
